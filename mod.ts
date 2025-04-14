@@ -8,3 +8,5 @@ export type {GenRustParams} from "./gen-rust.ts";
 
 export {genJava} from "./gen-java.ts";
 export type {GenJavaParams} from "./gen-java.ts";
+
+export {AdlcError} from "./utils/exec.ts";
