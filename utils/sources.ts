@@ -3,6 +3,7 @@ import * as fs from "@std/fs"
 import * as path from "@std/path"
 
 export interface AdlSourceParams {
+  verbose?: boolean,
   mergeAdlExts?: string[],
   searchPath: string[],
   adlModules: string[],
@@ -15,6 +16,10 @@ export async function compilerSourceArgsFromParams(params: AdlSourceParams) : Pr
     await getAdlStdLibDir(),
     ...params.searchPath,
   ]
+
+  if (params.verbose) {
+    args.push("--verbose")
+  }
 
   searchPath.forEach((dir) => {
     args = args.concat(["--searchdir", dir]);

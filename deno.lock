@@ -1,8 +1,11 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
+    "jsr:@adllang/adl-runtime@0.1": "0.1.2",
+    "jsr:@adllang/jsonbinding@~0.2.3": "0.2.5",
     "jsr:@adllang/local-setup@*": "0.16.0",
     "jsr:@std/bytes@^1.0.2": "1.0.4",
+    "jsr:@std/encoding@^1.0.5": "1.0.10",
     "jsr:@std/fs@^1.0.5": "1.0.5",
     "jsr:@std/io@0.225": "0.225.0",
     "jsr:@std/path@^1.0.7": "1.0.8",
@@ -10,6 +13,16 @@
     "jsr:@std/yaml@^1.0.5": "1.0.5"
   },
   "jsr": {
+    "@adllang/adl-runtime@0.1.2": {
+      "integrity": "ed4201074bcab14c644166e1a958f59ce858a09296181e3671245da19eac302c",
+      "dependencies": [
+        "jsr:@adllang/jsonbinding",
+        "jsr:@std/encoding"
+      ]
+    },
+    "@adllang/jsonbinding@0.2.5": {
+      "integrity": "c34bbdfbb059781eb8fc0812f5e482a1fefdcd1ad94c6e2c12a20caf9f207e62"
+    },
     "@adllang/local-setup@0.16.0": {
       "integrity": "6b9d4f12a3b3077fcf2b9b98cd7c031fe2f275d017a12222b2005cd4a11a761b",
       "dependencies": [
@@ -20,6 +33,9 @@
     },
     "@std/bytes@1.0.4": {
       "integrity": "11a0debe522707c95c7b7ef89b478c13fb1583a7cfb9a85674cd2cc2e3a28abc"
+    },
+    "@std/encoding@1.0.10": {
+      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
     },
     "@std/fs@1.0.5": {
       "integrity": "41806ad6823d0b5f275f9849a2640d87e4ef67c51ee1b8fb02426f55e02fd44e",
