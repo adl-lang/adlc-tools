@@ -1,9 +1,12 @@
-/** Run an command and check for success, ignoring output etc */
+/** Run an command and check for success */
 async function exec(cmd: string, args: string[]): Promise<void> {
-  const c = new Deno.Command(cmd, {args});
-  const {success, stderr} = await c.output();
+  const c = new Deno.Command(cmd, {
+    args,
+    stdout: 'inherit',
+    stderr: 'inherit',
+  });
+  const {success} = await c.output();
   if (!success) {
-    await Deno.stderr.write(stderr);
     throw new AdlcError(`Failed to run cmd: ${cmd} ${args.join(' ')}`, false);
   }
 }
