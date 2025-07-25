@@ -25,24 +25,7 @@ export async function compilerSourceArgsFromParams(params: AdlSourceParams) : Pr
     args = args.concat(["--merge-adlext", ext]);
   });
 
-  // The underlying ADL compiler currently expects file path
-  // not named modules. Until it does, do the conversion
-  // here
-  for( const m of params.adlModules) {
-    const filePath = await getAdlModuleFile(searchPath, m);
-    args.push(filePath);
-  }
+  args.push(...params.adlModules)
+
   return args;
-}
-
-export async function getAdlModuleFile(searchPath: string[], module: string): Promise<string> {
-  const relFileName = module.replace(/\./g, "/") + ".adl";
-  for(const basePath of searchPath) {
-    const fileName = path.join(basePath, relFileName);
-    if( await fs.exists(fileName)) {
-      return fileName;
-    }
-  }
-  throw new Error(`ADL module ${module} not found on search path`);
-
 }
