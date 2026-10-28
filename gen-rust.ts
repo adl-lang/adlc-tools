@@ -4,7 +4,16 @@ import { type AdlSourceParams, compilerSourceArgsFromParams } from "./utils/sour
 export interface GenRustParams extends AdlSourceParams{
   outputDir: string;
   module: string;
-  runtimeModule: string;
+
+  /**
+   * The module holding the adl runtime, relative to the crate root.
+   *
+   * Leave it unset and the generated code references the published `adl_rt`
+   * crate instead, which the project then depends on. Set it, and the code
+   * references `crate::<runtimeModule>`, which is where `includeRuntime`
+   * writes the runtime source. Needs adlc 1.4.1 or later to leave unset.
+   */
+  runtimeModule?: string;
 
   verbose?: boolean;
   noOverwrite?: boolean;
@@ -17,7 +26,9 @@ export async function genRust(params: GenRustParams): Promise<void> {
   let args: string[] = ["rust"];
   args = args.concat(["--outputdir", params.outputDir]);
   args = args.concat(["--module", params.module]);
-  args = args.concat(["--runtime-module", params.runtimeModule]);
+  if (params.runtimeModule !== undefined) {
+    args = args.concat(["--runtime-module", params.runtimeModule]);
+  }
 
   if (params.verbose) {
     args.push("--verbose");
