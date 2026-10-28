@@ -1,7 +1,7 @@
 {
   "name": "@adllang/adlc-tools",
   "version": "0.2.3",
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "exports": {
     "." : "./mod.ts",
     "./adlgen/resolver" : "./adlgen/resolver.ts",
